@@ -11,7 +11,7 @@ unsigned int getHash(const void *obj, int bucket_cnt){
     const unsigned char *p = (const unsigned char *)obj;
 
     while (*p != '\0') {
-        hash = ((hash << bucket_cnt) + hash) + (*p); /* hash * 33 + *p */
+        hash = ((hash << bucket_cnt) + hash) + (*p);
         p++;
     }
 
@@ -44,13 +44,10 @@ int main(){
     for(size_t i = 0; i < __INT32_MAX__; ++i){
         tt[i] = new Table();
         unsigned int save_hash = getHash(&tt[i], __INT32_MAX__);
-        cout << "GENERATED_HASH FOR " << &tt[i] << " "  << save_hash << endl;
         collision_count.push_back(save_hash);
     }
 
     unique_collision = countNumbers(collision_count);
-    cout << endl << "===COLLISION===" << endl;
-    printCounts(unique_collision);
     
     return 0;
 }

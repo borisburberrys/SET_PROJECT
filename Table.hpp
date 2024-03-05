@@ -1,11 +1,14 @@
+#include "TableAbstract.h"
+
+
 typedef class Table Table;
 
-class Table
+class Table : AbstractTable
 {
     private:
-        void *obj;
-        unsigned int obj_byte_size;
-        unsigned int hash_val;
+        // void *obj;
+        // unsigned int obj_byte_size;
+        // unsigned int hash_val;
 
         class error
         {
@@ -17,5 +20,6 @@ class Table
         };
         
     public:
-        unsigned int getHash(const void *obj, int bucket_cnt);
+        size_t hash_function(void *key, size_t keySize) override;
+
 };
